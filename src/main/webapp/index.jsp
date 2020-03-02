@@ -12,5 +12,12 @@
 </head>
 <body>
 <h1>Velkommen til din online indkøbsliste</h1>
+<form action="LoginServlet" method="post">
+    <label for="fname">Brugernavn</label>
+    <input type="text" id="fname" name="brugernavn"><br>
+    <label for="code">Kode</label>
+    <input type="password" id="code" name="kode">
+    <input type="submit" value="login">
+</form>
 </body>
 </html>
