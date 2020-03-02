@@ -12,12 +12,18 @@
 </head>
 <body>
 <h1>Velkommen til din online indkøbsliste</h1>
+<br>
+<span style="color: red">${requestScope.besked}</span>
+<br>
 <form action="LoginServlet" method="post">
-    <label for="fname">Brugernavn</label>
-    <input type="text" id="fname" name="brugernavn"><br>
-    <label for="code">Kode</label>
-    <input type="password" id="code" name="kode">
-    <input type="submit" value="login">
+    <fieldset>
+        <legend>Login:</legend>
+        <label for="fname">Brugernavn</label><br>
+        <input type="text" id="fname" name="brugernavn"><br>
+        <label for="code">Kode</label><br>
+        <input type="password" id="code" name="kode"><br>
+        <input type="submit" value="login">
+    </fieldset>
 </form>
 </body>
 </html>
