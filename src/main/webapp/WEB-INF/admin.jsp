@@ -14,6 +14,17 @@
 <body>
 <h2>Her kan du se en liste af brugere. Du kan også slette brugere her.</h2>
 <br>
+${requestScope.besked}
+<br>
+<form action="AdminServlet" method="post">
+    <fieldset>
+        <legend>Slet bruger:</legend>
+        <label for="fname">Brugernavn</label><br>
+        <input type="text" id="fname" name="brugernavn"><br>
+        <input type="submit" value="slet bruger">
+    </fieldset>
+</form>
+<br>
 <c:forEach var="element" items="${applicationScope.brugerMap}">
     ${element}
     <br>
