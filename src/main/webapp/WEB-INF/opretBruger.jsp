@@ -11,7 +11,7 @@
     <title>Opret Bruger</title>
 </head>
 <body>
-<h2>Her kan du registrerer dig som bruger på huskelisten</h2>
+<h2>Her skal du registrere dig inden du kan lave indkøb i min webshop</h2>
 <br>
 ${requestScope.besked}
 <form action="OpretServlet" method="post">
