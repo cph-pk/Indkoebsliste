@@ -11,6 +11,9 @@
     <title>Huskeliste</title>
 </head>
 <body>
+${sessionScope.besked}
+
     <h1>Du kan nu tilføje emner til din indkøbskurv</h1>
+
 </body>
 </html>

@@ -13,6 +13,7 @@
 <body>
 <h1>Velkommen til din webshop</h1>
 <br>
+${sessionScope.besked}
 <span style="color: red">${requestScope.besked}</span>
 <br>
 <form action="LoginServlet" method="post">
