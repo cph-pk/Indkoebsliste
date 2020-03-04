@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Per
@@ -12,8 +13,29 @@
 </head>
 <body>
 ${sessionScope.besked}
+<span style="float: right">
+<form action="LogOutServlet" method="post">
+    <input type="submit" value="logout">
+</form>
+</span>
+<h1>Du kan nu tilføje emner til din indkøbskurv</h1>
+<br>
+<form action="AddItemServlet" method="post">
+    <fieldset>
+        <legend>Tilføj vare i kurv:</legend>
+        <label for="fname">Skriv varenavn</label><br>
+        <input type="text" id="fname" name="vareNavn"><br>
+        <input type="submit" value="tilføj">
+    </fieldset>
+</form>
+<br>
+${requestScope.besked}
+<br>
+<c:forEach var="element" items="${sessionScope.basket}">
+    ${element}
+    <br>
 
-    <h1>Du kan nu tilføje emner til din indkøbskurv</h1>
+</c:forEach>
 
 </body>
 </html>

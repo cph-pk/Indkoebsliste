@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @WebServlet(name = "LoginServlet",urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
@@ -29,6 +31,16 @@ public class LoginServlet extends HttpServlet {
             servletContext.setAttribute("brugerMap",brugerMap);
         }
 
+        if (((Set<String>) servletContext.getAttribute("aktiveBrugere")) == null ) {
+            Set<String> aktiveBrugere = new HashSet<>();
+            servletContext.setAttribute("aktiveBrugere",aktiveBrugere);
+
+        }
+
+        if (!(session.getAttribute("besked") == null )) {
+            request.getRequestDispatcher("WEB-INF/huskeliste.jsp").forward(request,response);
+        }
+
         if(!((Map<String,String>)servletContext.getAttribute("brugerMap")).containsKey(brugernavn)) {
             //todo gå til login side
             request.setAttribute("besked","Opret dig som bruger her!");
@@ -41,12 +53,18 @@ public class LoginServlet extends HttpServlet {
                 request.getRequestDispatcher("WEB-INF/admin.jsp").forward(request,response);
             }
 
-            session.setAttribute("besked","du er logget ind som: " + brugernavn);
-            request.getRequestDispatcher("WEB-INF/huskeliste.jsp").forward(request,response);
+            if (!((Set<String>) servletContext.getAttribute("aktiveBrugere")).contains(brugernavn)) {
+                ((Set<String>) servletContext.getAttribute("aktiveBrugere")).add(brugernavn);
+                session.setAttribute("besked","du er logget ind som: " + brugernavn);
+                session.setAttribute("brugernavn", brugernavn);
+                request.getRequestDispatcher("WEB-INF/huskeliste.jsp").forward(request,response);
+            }
+
         }
 
         //todo gå til login dvs. index-siden
-        request.setAttribute("besked","Din kode er forkert, prøv igen");
+        request.setAttribute("color","red");
+        request.setAttribute("besked","Der gik et eller andet galt, prøv igen");
         request.getRequestDispatcher("index.jsp").forward(request,response);
     }
 
